@@ -6,3 +6,5 @@ library fcode_common;
 
 export 'src/algo/algo.dart';
 export 'src/log.dart';
+export 'src/widget/animated_fab.dart';
+export 'src/widget/custom_snack_bar.dart';
