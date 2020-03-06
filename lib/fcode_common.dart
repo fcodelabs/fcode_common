@@ -4,5 +4,5 @@
 
 library fcode_common;
 
-export 'src/algo.dart';
+export 'src/algo/algo.dart';
 export 'src/log.dart';
