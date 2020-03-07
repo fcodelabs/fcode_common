@@ -31,7 +31,6 @@ abstract class Algo {
   /// Get a unique ID for the flutter app
   static Future<String> getUdID() => _getUdID();
 
-
   /// Format the given time by comparing with [DateTime.now()]
   /// and return the time difference in a intelligent format
   ///
