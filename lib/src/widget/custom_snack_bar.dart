@@ -18,13 +18,17 @@ class CustomSnackBar {
   const CustomSnackBar({this.scaffoldKey, this.scaffoldState})
       : assert(scaffoldState != null || scaffoldKey != null);
 
-  /// Shows a SnackBar with given error [msg]
-  void showErrorSnackBar(String msg) {
-    showSnackBar(text: "Error: $msg", color: Colors.red[300]);
-  }
-
   ScaffoldState get _state {
     return scaffoldKey == null ? scaffoldState : scaffoldKey.currentState;
+  }
+
+  /// Shows a SnackBar with given error [msg]
+  void showErrorSnackBar(String msg) {
+    showSnackBar(
+      text: "Error: $msg",
+      color: Colors.red[300],
+      duration: Duration(hours: 1),
+    );
   }
 
   /// Show a Loading SnackBar for 1 minute
@@ -41,7 +45,7 @@ class CustomSnackBar {
       backgroundColor: Colors.green[300],
       duration: Duration(minutes: 1),
     );
-    _state?.showSnackBar(snackBar);
+    showRawSnackBar(snackBar);
   }
 
   /// Show a [SnackBar] with [text] (maximum 2 lines) and [color] in the
@@ -51,11 +55,11 @@ class CustomSnackBar {
   /// immediately hide on pressed.
   void showSnackBar({
     @required String text,
-    Duration duration = const Duration(hours: 1),
+    Duration duration = const Duration(seconds: 5),
     Color color,
-    bool action = true,
+    SnackBarAction action,
+    SnackBarBehavior behavior = SnackBarBehavior.fixed,
   }) {
-    assert(action != null);
     assert(duration != null);
     hideAll();
     final snackBar = SnackBar(
@@ -64,16 +68,20 @@ class CustomSnackBar {
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
       ),
-      backgroundColor: color ?? Colors.green[400],
+      backgroundColor: color,
       duration: duration,
-      action: action
-          ? SnackBarAction(
-              label: "Clear",
-              textColor: Colors.black,
-              onPressed: () => _state.removeCurrentSnackBar(),
-            )
-          : null,
+      behavior: behavior,
+      action: action ??
+          SnackBarAction(
+            label: "CLEAR",
+            onPressed: hideAll,
+          ),
     );
+    showRawSnackBar(snackBar);
+  }
+
+  /// Show the given [snackBar]
+  void showRawSnackBar(SnackBar snackBar) {
     _state?.showSnackBar(snackBar);
   }
 

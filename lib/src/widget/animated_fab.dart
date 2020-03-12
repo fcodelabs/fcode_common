@@ -99,8 +99,17 @@ class AnimatedFab extends StatefulWidget {
   /// [FloatingActionButton]s
   final List<ActionItemModel> actions;
 
-  /// Scaffold that is used in behind
-  final Scaffold scaffold;
+  /// Key to be used in Scaffold
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  /// Drawer to be used in the Scaffold
+  final Widget drawer;
+
+  /// Body of the Scaffold. This is required
+  final Widget body;
+
+  /// AppBar of the Scaffold
+  final PreferredSizeWidget appBar;
 
   /// Default icon of the main FAB
   final IconData icon1;
@@ -111,7 +120,10 @@ class AnimatedFab extends StatefulWidget {
   /// {@macro animated_fab}
   const AnimatedFab({
     Key key,
-    @required this.scaffold,
+    this.scaffoldKey,
+    this.appBar,
+    this.drawer,
+    @required this.body,
     @required this.actions,
     this.icon1 = Icons.add,
     this.icon2 = Icons.close,
@@ -293,21 +305,22 @@ class _AnimatedFabState extends State<AnimatedFab>
       },
     );
 
-    return Material(
-      child: Stack(
+    return Scaffold(
+      key: widget.scaffoldKey,
+      body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          widget.scaffold,
+          Scaffold(
+            drawer: widget.drawer,
+            appBar: widget.appBar,
+            body: widget.body,
+          ),
           Positioned.fill(
             child: backdrop,
           ),
-          Positioned(
-            bottom: 16,
-            right: 16,
-            child: fabs,
-          ),
         ],
       ),
+      floatingActionButton: fabs,
     );
   }
 }
