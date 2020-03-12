@@ -1,3 +1,8 @@
+## [0.0.3] - March 12, 2020
+
+* Profile Image Widget added
+* Bug fixes in FAB and Snackbar
+
 ## [0.0.2] - March 9, 2020
 
 * Package update
