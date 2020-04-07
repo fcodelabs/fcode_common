@@ -40,10 +40,22 @@ class _PastTimeState extends State<PastTime> {
   @override
   void initState() {
     super.initState();
+    _init();
+  }
+
+  void _init() {
     showFirst = true;
     timer = Timer.periodic(Duration(seconds: 60), changeValues);
     first = widget.dateTime == null ? "" : Algo.formatTime(widget.dateTime);
     second = first;
+  }
+
+  @override
+  void didUpdateWidget(PastTime oldWidget) {
+    if (oldWidget.dateTime != widget.dateTime) {
+      _init();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   void changeValues(Timer t) {

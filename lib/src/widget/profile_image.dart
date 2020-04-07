@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
 
 /// {@template profile_image}
@@ -25,6 +26,18 @@ class ProfileImage extends StatelessWidget {
   /// Same as [CircleAvatar.foregroundColor]
   final Color foregroundColor;
 
+  /// Same as [CircleAvatar.radius]
+  final double radius;
+
+  /// Same as [CircleAvatar.minRadius]
+  final double minRadius;
+
+  /// Same as [CircleAvatar.maxRadius]
+  final double maxRadius;
+
+  /// Same as [Text.style]
+  final TextStyle style;
+
   /// {@macro profile_image}
   ProfileImage({
     Key key,
@@ -33,6 +46,10 @@ class ProfileImage extends StatelessWidget {
     this.lastName,
     this.backgroundColor,
     this.foregroundColor,
+    this.radius,
+    this.minRadius,
+    this.maxRadius,
+    this.style,
   })  : assert(firstName != null || lastName != null || imageURL != null),
         super(key: key);
 
@@ -53,9 +70,19 @@ class ProfileImage extends StatelessWidget {
 
     return CircleAvatar(
       backgroundImage: noImg ? null : AdvancedNetworkImage(imageURL),
-      child: noImg ? Text(initials) : null,
+      child: noImg
+          ? Text(
+        initials,
+        style: style,
+        maxLines: 1,
+        textAlign: TextAlign.center,
+      )
+          : null,
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,
+      radius: radius,
+      maxRadius: maxRadius,
+      minRadius: minRadius,
     );
   }
 }

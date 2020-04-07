@@ -1,3 +1,8 @@
+## [0.0.4] - April 7, 2020
+
+* Profile Image is more flexible
+* Past time bug fixes
+
 ## [0.0.3] - March 12, 2020
 
 * Profile Image Widget added
