@@ -1,3 +1,9 @@
+## [0.0.5] - April 16, 2020
+
+* Loading and Error custom snack bar has color and duration as params
+* Pastime calculator has more configurations
+* Cron String parser added
+
 ## [0.0.4] - April 7, 2020
 
 * Profile Image is more flexible

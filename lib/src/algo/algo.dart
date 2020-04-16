@@ -9,9 +9,7 @@ import 'package:intl/intl.dart';
 import '../log.dart';
 
 part 'format_time.dart';
-
 part 'get_ud_id.dart';
-
 part 'to_title_case.dart';
 
 /// Have implemented different types of algorithms that is useful.
