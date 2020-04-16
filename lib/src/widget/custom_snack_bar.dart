@@ -23,17 +23,24 @@ class CustomSnackBar {
   }
 
   /// Shows a SnackBar with given error [msg]
-  void showErrorSnackBar(String msg) {
+  void showErrorSnackBar(String msg, {
+    Color backgroundColor,
+    Duration duration,
+  }) {
+    backgroundColor ??= Colors.red[300];
+    duration ??= Duration(hours: 1);
     showSnackBar(
       text: "Error: $msg",
-      color: Colors.red[300],
-      duration: Duration(hours: 1),
+      color: backgroundColor,
+      duration: duration,
     );
   }
 
   /// Show a Loading SnackBar for 1 minute
-  void showLoadingSnackBar() {
+  void showLoadingSnackBar({Color backgroundColor, Duration duration}) {
     hideAll();
+    backgroundColor ??= Colors.green[300];
+    duration ??= Duration(minutes: 1);
     final snackBar = SnackBar(
       content: Row(
         children: <Widget>[
@@ -42,8 +49,8 @@ class CustomSnackBar {
           Text("Loading..."),
         ],
       ),
-      backgroundColor: Colors.green[300],
-      duration: Duration(minutes: 1),
+      backgroundColor: backgroundColor,
+      duration: duration,
     );
     showRawSnackBar(snackBar);
   }
