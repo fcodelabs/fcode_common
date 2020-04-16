@@ -39,7 +39,7 @@ abstract class Algo {
   /// ```
   ///
   static String formatTime(DateTime d, {
-    Formatter formatter = const Formatter.initialize(type: Formatter.large),
+    Formatter formatter = Formatter.large,
     bool showAgo = true,
     DateFormat df,
   }) =>

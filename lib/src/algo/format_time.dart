@@ -7,10 +7,24 @@ final _dateFormat = DateFormat("MMM dd, yyyy", "en_US");
 class Formatter {
   // Formatter initializer types
   /// Use large format type. Eg: minutes, hours
-  static const large = 'large';
+  static const large = Formatter(
+    minute: 'minute',
+    minutes: 'minutes',
+    hour: 'hour',
+    hours: 'hours',
+    day: 'day',
+    days: 'days',
+  );
 
   /// Use small format type. Eg: mins, hrs
-  static const small = 'small';
+  static const small = Formatter(
+    minute: 'min',
+    minutes: 'mins',
+    hour: 'hr',
+    hours: 'hrs',
+    day: 'day',
+    days: 'days',
+  );
 
   /// Eg: 1 minute ago
   final String minute;
@@ -40,18 +54,6 @@ class Formatter {
     this.day = '',
     this.days = '',
   });
-
-  /// Initialize a [Formatter] according to the given [type].
-  /// Type can be either [large] for [small].
-  const Formatter.initialize({String type})
-      : this(
-    minute: (type == small ? 'min' : 'minute'),
-    minutes: (type == small ? 'mins' : 'minutes'),
-    hour: (type == small ? 'hr' : 'hour'),
-    hours: (type == small ? 'hrs' : 'hours'),
-    day: (type == small ? 'day' : 'day'),
-    days: (type == small ? 'days' : 'days'),
-  );
 }
 
 String _formatTime(DateTime d, {
@@ -102,8 +104,11 @@ String _formatTime(DateTime d, {
   if (inH <= 22) {
     return addAgo("$inH ${formatter.hours}");
   }
-  if (inH <= 25) {
+  if (inH <= 40) {
     return addAgo("1 ${formatter.day}");
+  }
+  if (inH <= 50) {
+    return addAgo("2 ${formatter.days}");
   }
 
   final inD = difference.inDays;
