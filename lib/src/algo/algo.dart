@@ -9,7 +9,9 @@ import 'package:intl/intl.dart';
 import '../log.dart';
 
 part 'format_time.dart';
+
 part 'get_ud_id.dart';
+
 part 'to_title_case.dart';
 
 /// Have implemented different types of algorithms that is useful.
@@ -36,5 +38,10 @@ abstract class Algo {
   /// final d = DateTime()
   /// ```
   ///
-  static String formatTime(DateTime d) => _formatTime(d);
+  static String formatTime(DateTime d, {
+    Formatter formatter = const Formatter.initialize(type: Formatter.large),
+    bool showAgo = true,
+    DateFormat df,
+  }) =>
+      _formatTime(d, formatter: formatter, showAgo: showAgo, df: df);
 }

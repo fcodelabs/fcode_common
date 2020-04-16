@@ -2,54 +2,113 @@ part of 'algo.dart';
 
 final _dateFormat = DateFormat("MMM dd, yyyy", "en_US");
 
-String _formatTime(DateTime d) {
+/// Create a object that holds the String options that can be used
+/// format a [DateTime]
+class Formatter {
+  // Formatter initializer types
+  /// Use large format type. Eg: minutes, hours
+  static const large = 'large';
+
+  /// Use small format type. Eg: mins, hrs
+  static const small = 'small';
+
+  /// Eg: 1 minute ago
+  final String minute;
+
+  /// Eg: 3 minutes ago
+  final String minutes;
+
+  /// Eg: 1 hour ago
+  final String hour;
+
+  /// Eg: 2 hours ago
+  final String hours;
+
+  /// Eg: 1 day ago
+  final String day;
+
+  /// Eg: 3 days ago
+  final String days;
+
+  /// Create a object that holds the String options that can be used
+  /// format a [DateTime]
+  const Formatter({
+    this.minute = '',
+    this.minutes = '',
+    this.hour = '',
+    this.hours = '',
+    this.day = '',
+    this.days = '',
+  });
+
+  /// Initialize a [Formatter] according to the given [type].
+  /// Type can be either [large] for [small].
+  const Formatter.initialize({String type})
+      : this(
+    minute: (type == small ? 'min' : 'minute'),
+    minutes: (type == small ? 'mins' : 'minutes'),
+    hour: (type == small ? 'hr' : 'hour'),
+    hours: (type == small ? 'hrs' : 'hours'),
+    day: (type == small ? 'day' : 'day'),
+    days: (type == small ? 'days' : 'days'),
+  );
+}
+
+String _formatTime(DateTime d, {
+  Formatter formatter,
+  bool showAgo,
+  DateFormat df,
+}) {
   final now = DateTime.now();
   final difference = now.difference(d);
+
+  addAgo(str) => showAgo ? '$str ago' : str;
+
   final inSec = difference.inSeconds;
   if (inSec < 55) {
     return "Just Now";
   }
   if (inSec < 100) {
-    return "1 minute ago";
+    return addAgo("1 ${formatter.minute}");
   }
   if (inSec < 125) {
-    return "2 minutes ago";
+    return addAgo("2 ${formatter.minutes}");
   }
 
   final inMin = difference.inMinutes;
   if (inMin < 15) {
-    return "$inMin minutes ago";
+    return addAgo("$inMin ${formatter.minutes}");
   }
   if (inMin < 18) {
-    return "15 minutes ago";
+    return addAgo("15 ${formatter.minutes}");
   }
   if (inMin < 25) {
-    return "20 minutes ago";
+    return addAgo("20 ${formatter.minutes}");
   }
   if (inMin < 38) {
-    return "30 minutes ago";
+    return addAgo("30 ${formatter.minutes}");
   }
   if (inMin < 53) {
-    return "45 minutes ago";
+    return addAgo("45 ${formatter.minutes}");
   }
   if (inMin < 105) {
-    return "1 hour ago";
+    return addAgo("1 ${formatter.hour}");
   }
   if (inMin < 125) {
-    return "2 hours ago";
+    return addAgo("2 ${formatter.hours}");
   }
 
   final inH = difference.inHours;
   if (inH <= 22) {
-    return "$inH hours ago";
+    return addAgo("$inH ${formatter.hours}");
   }
   if (inH <= 25) {
-    return "1 day ago";
+    return addAgo("1 ${formatter.day}");
   }
 
   final inD = difference.inDays;
   if (inD <= 3) {
-    return "$inD days ago";
+    return addAgo("$inD ${formatter.days}");
   }
-  return _dateFormat.format(d);
+  return (df ?? _dateFormat).format(d);
 }
