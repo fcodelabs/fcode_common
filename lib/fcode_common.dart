@@ -6,4 +6,5 @@ library fcode_common;
 
 export 'src/algo/algo.dart';
 export 'src/log.dart';
+export 'src/util/cron_parser.dart';
 export 'src/widget/widget.dart';

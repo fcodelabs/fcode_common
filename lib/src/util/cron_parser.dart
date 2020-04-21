@@ -4,19 +4,36 @@ abstract class CronParser {
   CronParser._();
 
   static String _format(List<int> value, int step) {
-    final s = (value?.isEmpty ?? true) ? '*' : value.join(",");
+    final empty = value?.isEmpty ?? true;
+    final s = empty
+        ? '*'
+        : value[0] == -1 ? '${value[1]}-${value[2]}' : value.join(",");
     if (step == null) {
       return s;
     }
     return '$s/$step';
   }
 
-  static List<int> _parse(String value) {
+  static List _parse(String value) {
     final v = value.split("/");
-    if (v.length == 1) {
-      return [int.parse(value), null];
+    int step;
+    if (v.length == 2) {
+      step = int.parse(v[1]);
     }
-    return v.map(int.parse).toList(growable: false);
+    if (v[0] == '*') {
+      return [null, step];
+    }
+
+    final range = v[0].split('-');
+    if (range.length == 2) {
+      return [
+        [-1, int.parse(range[0]), int.parse(range[1])],
+        step
+      ];
+    }
+
+    final separated = v[0].split(',');
+    return [separated.map(int.parse).toList(growable: false), step];
   }
 
   /// Format the [repeat] as a cron [String].
@@ -42,6 +59,18 @@ abstract class CronParser {
 /// {@template cron_repeat}
 /// Store the information of a Cron String
 /// Support for cron string without seconds
+///
+/// ## Data format of the value [List]s
+///
+/// [min], [hour], [dayOfMonth], [month], [dayOfWeek] all are lists.
+/// If the first element of the list is -1, then 2nd and 3rd elements
+/// should be there and formatted as a range
+///
+/// If the first element is not -1, then values will be separated by commas.
+///
+/// Eg:
+/// * [5, 6, 11] will be formatted as '5,6,11'
+/// * [-1, 8, 21] will be formatted as '8-21'
 /// {@endtemplate}
 class Repeat {
   /// Same as the value at first position of the cron String
