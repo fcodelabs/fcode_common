@@ -1,3 +1,7 @@
+## [0.0.6] - April 21, 2020
+
+* Cron Parser new features and bug fixes
+
 ## [0.0.5] - April 16, 2020
 
 * Loading and Error custom snack bar has color and duration as params
