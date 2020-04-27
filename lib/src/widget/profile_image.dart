@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_advanced_networkimage/provider.dart';
 
 /// {@template profile_image}
-/// Show an [CircleAvatar] with the given [imageURL].
+/// Show an [CircleAvatar] with the given [image].
 ///
-/// If [imageURL] in null [firstName] and/or [lastName] will be used to
+/// If [image] in null [firstName] and/or [lastName] will be used to
 /// generate initials to be show in the [CircleAvatar].
 ///
-/// Atleast on of [imageURL], [firstName] or [lastName] should not be null.
+/// Atleast on of [image], [firstName] or [lastName] should not be null.
 /// {@endtemplate}
 class ProfileImage extends StatelessWidget {
   /// Network URL for the image to be shown
-  final String imageURL;
+  final ImageProvider image;
 
   /// First Name of the person
   final String firstName;
@@ -41,7 +40,7 @@ class ProfileImage extends StatelessWidget {
   /// {@macro profile_image}
   ProfileImage({
     Key key,
-    this.imageURL,
+    this.image,
     this.firstName,
     this.lastName,
     this.backgroundColor,
@@ -50,7 +49,8 @@ class ProfileImage extends StatelessWidget {
     this.minRadius,
     this.maxRadius,
     this.style,
-  })  : assert(firstName != null || lastName != null || imageURL != null),
+  })
+      : assert(firstName != null || lastName != null || image != null),
         super(key: key);
 
   String _generate() {
@@ -65,12 +65,11 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final noImg = imageURL == null || imageURL.trim().isEmpty;
-    final initials = noImg ? _generate().toUpperCase() : '';
+    final initials = image == null ? _generate().toUpperCase() : '';
 
     return CircleAvatar(
-      backgroundImage: noImg ? null : AdvancedNetworkImage(imageURL),
-      child: noImg
+      backgroundImage: image,
+      child: image == null
           ? Text(
         initials,
         style: style,
