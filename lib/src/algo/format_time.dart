@@ -56,7 +56,8 @@ class Formatter {
   });
 }
 
-String _formatTime(DateTime d, {
+String _formatTime(
+  DateTime d, {
   Formatter formatter,
   bool showAgo,
   DateFormat df,

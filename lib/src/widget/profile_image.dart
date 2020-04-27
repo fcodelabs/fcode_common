@@ -49,8 +49,7 @@ class ProfileImage extends StatelessWidget {
     this.minRadius,
     this.maxRadius,
     this.style,
-  })
-      : assert(firstName != null || lastName != null || image != null),
+  })  : assert(firstName != null || lastName != null || image != null),
         super(key: key);
 
   String _generate() {
@@ -71,11 +70,11 @@ class ProfileImage extends StatelessWidget {
       backgroundImage: image,
       child: image == null
           ? Text(
-        initials,
-        style: style,
-        maxLines: 1,
-        textAlign: TextAlign.center,
-      )
+              initials,
+              style: style,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+            )
           : null,
       backgroundColor: backgroundColor,
       foregroundColor: foregroundColor,

@@ -28,7 +28,8 @@ class CustomSnackBar {
   }
 
   /// Shows a SnackBar with given error [msg]
-  void showErrorSnackBar(String msg, {
+  void showErrorSnackBar(
+    String msg, {
     Color backgroundColor,
     Duration duration,
   }) {
@@ -91,9 +92,9 @@ class CustomSnackBar {
       onVisible: onVisible,
       action: action == null && customTheme.showDefaultAction
           ? SnackBarAction(
-        label: "CLEAR",
-        onPressed: hideAll,
-      )
+              label: "CLEAR",
+              onPressed: hideAll,
+            )
           : null,
     );
     showRawSnackBar(snackBar);

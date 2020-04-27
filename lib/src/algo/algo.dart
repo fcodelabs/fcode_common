@@ -36,7 +36,8 @@ abstract class Algo {
   /// final d = DateTime()
   /// ```
   ///
-  static String formatTime(DateTime d, {
+  static String formatTime(
+    DateTime d, {
     Formatter formatter = Formatter.large,
     bool showAgo = true,
     DateFormat df,

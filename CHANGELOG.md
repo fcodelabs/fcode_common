@@ -1,3 +1,8 @@
+## [0.0.7] - April 27, 2020
+
+* Custom Snack Bar Theme added.
+* Dependencies were updated.
+
 ## [0.0.6] - April 21, 2020
 
 * Cron Parser new features and bug fixes
