@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_snack_bar_theme.dart';
+
 /// {@template custom_snack_bar}
 /// Create a [SnackBar] directly from a [scaffoldKey] or a [scaffoldState].
 ///
@@ -14,6 +16,9 @@ class CustomSnackBar {
   /// [scaffoldState] which is associate with the [Scaffold]
   final ScaffoldState scaffoldState;
 
+  /// Additional theme information for [CustomSnackBar]
+  static CustomSnackBarTheme customTheme = CustomSnackBarTheme();
+
   /// {@macro custom_snack_bar}
   const CustomSnackBar({this.scaffoldKey, this.scaffoldState})
       : assert(scaffoldState != null || scaffoldKey != null);
@@ -27,30 +32,30 @@ class CustomSnackBar {
     Color backgroundColor,
     Duration duration,
   }) {
-    backgroundColor ??= Colors.red[300];
-    duration ??= Duration(hours: 1);
     showSnackBar(
       text: "Error: $msg",
-      color: backgroundColor,
-      duration: duration,
+      textStyle: customTheme.errorSnackBarTextStyle,
+      color: backgroundColor ?? customTheme.errorSnackBarColor,
+      duration: duration ?? customTheme.errorSnackBarDuration,
     );
   }
 
   /// Show a Loading SnackBar for 1 minute
   void showLoadingSnackBar({Color backgroundColor, Duration duration}) {
     hideAll();
-    backgroundColor ??= Colors.green[300];
-    duration ??= Duration(minutes: 1);
     final snackBar = SnackBar(
       content: Row(
         children: <Widget>[
           CircularProgressIndicator(),
           SizedBox(width: 10.0),
-          Text("Loading..."),
+          Text(
+            "Loading...",
+            style: customTheme.loadingSnackBarTextStyle,
+          ),
         ],
       ),
-      backgroundColor: backgroundColor,
-      duration: duration,
+      backgroundColor: backgroundColor ?? customTheme.loadingSnackBarColor,
+      duration: duration ?? customTheme.loadingSnackBarDuration,
     );
     showRawSnackBar(snackBar);
   }
@@ -62,27 +67,34 @@ class CustomSnackBar {
   /// immediately hide on pressed.
   void showSnackBar({
     @required String text,
-    Duration duration = const Duration(seconds: 5),
+    TextStyle textStyle,
+    Duration duration,
     Color color,
     SnackBarAction action,
     SnackBarBehavior behavior = SnackBarBehavior.fixed,
+    Animation<double> animation,
+    VoidCallback onVisible,
   }) {
     assert(duration != null);
     hideAll();
     final snackBar = SnackBar(
       content: Text(
         text,
-        maxLines: 2,
+        maxLines: customTheme.maxLines,
         overflow: TextOverflow.ellipsis,
+        style: textStyle ?? customTheme.textStyle,
       ),
       backgroundColor: color,
-      duration: duration,
+      duration: duration ?? customTheme.defaultDuration,
       behavior: behavior,
-      action: action ??
-          SnackBarAction(
-            label: "CLEAR",
-            onPressed: hideAll,
-          ),
+      animation: animation,
+      onVisible: onVisible,
+      action: action == null && customTheme.showDefaultAction
+          ? SnackBarAction(
+        label: "CLEAR",
+        onPressed: hideAll,
+      )
+          : null,
     );
     showRawSnackBar(snackBar);
   }
