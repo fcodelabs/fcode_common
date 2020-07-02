@@ -29,6 +29,13 @@ abstract class Algo {
   /// Get a unique ID for the flutter app
   static Future<String> getUdID() => _getUdID();
 
+  /// Get the name of the device which was given by the hardware
+  /// manufacturer.
+  static Future<String> getDeviceName() => _getDeviceName();
+
+  /// Version of the current operating system.
+  static Future<String> getDeviceVersion() => _getDeviceVersion();
+
   /// Format the given time by comparing with [DateTime.now()]
   /// and return the time difference in a intelligent format
   ///
