@@ -25,8 +25,8 @@ Future<void> __findDeviceInfo() async {
   }
   _log.i(
     'Device Name: $_deviceName, '
-        'deviceVersion: $_deviceVersion, '
-        'identifier: $identifier',
+    'deviceVersion: $_deviceVersion, '
+    'identifier: $identifier',
   );
 
   final key = identifier;
@@ -48,7 +48,7 @@ Future<String> _getDeviceName() async {
 }
 
 Future<String> _getDeviceVersion() async {
-  if(_deviceVersion?.isEmpty ?? true) {
+  if (_deviceVersion?.isEmpty ?? true) {
     await __findDeviceInfo();
   }
   return _deviceVersion;

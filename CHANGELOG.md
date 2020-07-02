@@ -1,3 +1,9 @@
+## [0.0.8] - July 02, 2020
+
+* Bug fixes in SnackBar
+* Log now has a const constructor
+* In addition to the device UDID, device name and OS version is exposed.
+
 ## [0.0.7] - April 27, 2020
 
 * Custom Snack Bar Theme added.
