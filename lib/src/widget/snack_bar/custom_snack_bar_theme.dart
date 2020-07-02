@@ -9,6 +9,10 @@ import 'custom_snack_bar.dart';
 /// This is not a replacement to [SnackBarThemeData]. But this provide
 /// additional control over the [CustomSnackBar]. Note that values from
 /// this will override the values in [SnackBarThemeData].
+///
+/// For the settings that are not present here, please take a look at
+/// the [SnackBarThemeData] and set the appropriate values in the
+/// default theme of the Flutter application.
 /// {@endtemplate}
 class CustomSnackBarTheme {
   /// Default duration that a [SnackBar] is shown.
@@ -54,7 +58,7 @@ class CustomSnackBarTheme {
 
   /// {@macro custom_snack_bar_theme}
   CustomSnackBarTheme({
-    this.defaultDuration = const Duration(seconds: 5),
+    this.defaultDuration = const Duration(minutes: 5),
     this.showDefaultAction = true,
     this.textStyle,
     this.maxLines = 2,

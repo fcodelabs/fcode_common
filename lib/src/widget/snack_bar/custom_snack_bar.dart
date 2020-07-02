@@ -76,7 +76,7 @@ class CustomSnackBar {
     Animation<double> animation,
     VoidCallback onVisible,
   }) {
-    assert(duration != null);
+    assert(text != null);
     hideAll();
     final snackBar = SnackBar(
       content: Text(
