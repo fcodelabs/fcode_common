@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:meta/meta.dart';
 
 /// {@template log}
 /// Used to print logs in the console according to the severity level
@@ -31,6 +32,7 @@ import 'package:intl/intl.dart';
 /// * [info]
 /// * [debug]
 /// {@endtemplate}
+@immutable
 class Log {
   static final _dateFormat = DateFormat("Hms", "en_US");
   static final Map<String, Log> _logs = {};
@@ -76,12 +78,12 @@ class Log {
   /// between two log prints from different [Log] instances.
   final String tag;
 
-  Log._(tag) : tag = tag.padRight(25);
+  const Log._(this.tag);
 
   /// {@macro log}
   factory Log(String tag) {
     if (!_logs.containsKey(tag)) {
-      _logs[tag] = Log._(tag);
+      _logs[tag] = Log._(tag.padRight(25));
     }
     return _logs[tag];
   }
