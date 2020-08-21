@@ -36,6 +36,15 @@ abstract class Algo {
   static String toFirstLetterCapital(final String text) =>
       _firstLetterCapital(text);
 
+  /// Capitalize the first letter of each sentence of the given [text]
+  ///
+  /// ```dart
+  /// final str = "i walk down. i look up.";
+  /// final ret = Algo.toFirstLetterCapital(str);
+  /// print(ret);  // I walk down. I look up.
+  /// ```
+  static String toSentenceCapital(final String text) => _sentenceCapital(text);
+
   /// Get a unique ID for the flutter app
   static Future<String> getUdID() => _getUdID();
 

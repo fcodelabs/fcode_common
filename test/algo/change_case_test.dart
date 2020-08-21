@@ -16,5 +16,14 @@ void main() {
       final matcher = 'Fcode bloc';
       expect(actual, matcher);
     });
+
+    test("Test Sentence Capital", () {
+      final text = "my name is R.P. Rathnayake. i work in Fcode Labs.I "
+          "like coding.";
+      final actual = Algo.toSentenceCapital(text);
+      final matcher = 'My name is R. P. Rathnayake. I work in Fcode Labs. I '
+          'like coding.';
+      expect(actual, matcher);
+    });
   });
 }
