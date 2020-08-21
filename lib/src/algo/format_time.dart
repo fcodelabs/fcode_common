@@ -9,6 +9,7 @@ class Formatter {
   // Formatter initializer types
   /// Use large format type. Eg: minutes, hours
   static const large = Formatter(
+    yesterday: 'yesterday',
     justNow: 'just now',
     minute: 'minute',
     minutes: 'minutes',
@@ -20,6 +21,7 @@ class Formatter {
 
   /// Use small format type. Eg: mins, hrs
   static const small = Formatter(
+    yesterday: 'yesterday',
     justNow: 'now',
     minute: 'min',
     minutes: 'mins',
@@ -50,9 +52,13 @@ class Formatter {
   /// Eg: 3 days ago
   final String days;
 
+  /// Eg: yesterday
+  final String yesterday;
+
   /// Create a object that holds the String options that can be used
   /// format a [DateTime]
   const Formatter({
+    @required this.yesterday,
     @required this.justNow,
     @required this.minute,
     @required this.minutes,
@@ -67,6 +73,7 @@ class Formatter {
       identical(this, other) ||
       other is Formatter &&
           runtimeType == other.runtimeType &&
+          yesterday == other.yesterday &&
           justNow == other.justNow &&
           minute == other.minute &&
           minutes == other.minutes &&
@@ -77,6 +84,7 @@ class Formatter {
 
   @override
   int get hashCode =>
+      yesterday.hashCode ^
       justNow.hashCode ^
       minute.hashCode ^
       minutes.hashCode ^
@@ -90,9 +98,17 @@ String _formatTime(
   DateTime d, {
   Formatter formatter,
   bool showAgo,
+  bool showYesterday,
   DateFormat df,
 }) {
   final now = DateTime.now();
+  if (showYesterday) {
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+    final interested = DateTime(d.year, d.month, d.day);
+    if (yesterday == interested) {
+      return formatter.yesterday;
+    }
+  }
   final difference = now.difference(d);
 
   addAgo(str) => showAgo ? '$str ago' : str;
