@@ -13,6 +13,9 @@ class PastTime extends StatefulWidget {
   /// current time
   final DateTime dateTime;
 
+  /// [Formatter] that is going to be used to format time.
+  final Formatter formatter;
+
   /// Text Style of the field
   final TextStyle style;
 
@@ -23,6 +26,7 @@ class PastTime extends StatefulWidget {
   PastTime({
     Key key,
     @required this.dateTime,
+    this.formatter = Formatter.large,
     this.style,
     this.textAlign,
   }) : super(key: key);
@@ -45,14 +49,18 @@ class _PastTimeState extends State<PastTime> {
 
   void _init() {
     showFirst = true;
+    timer?.cancel();
     timer = Timer.periodic(Duration(seconds: 60), changeValues);
-    first = widget.dateTime == null ? "" : Algo.formatTime(widget.dateTime);
+    first = widget.dateTime == null
+        ? ""
+        : Algo.formatTime(widget.dateTime, formatter: widget.formatter);
     second = first;
   }
 
   @override
   void didUpdateWidget(PastTime oldWidget) {
-    if (oldWidget.dateTime != widget.dateTime) {
+    if (oldWidget.dateTime != widget.dateTime ||
+        oldWidget.formatter != widget.formatter) {
       _init();
     }
     super.didUpdateWidget(oldWidget);
@@ -60,9 +68,13 @@ class _PastTimeState extends State<PastTime> {
 
   void changeValues(Timer t) {
     if (showFirst) {
-      second = widget.dateTime == null ? "" : Algo.formatTime(widget.dateTime);
+      second = widget.dateTime == null
+          ? ""
+          : Algo.formatTime(widget.dateTime, formatter: widget.formatter);
     } else {
-      first = widget.dateTime == null ? "" : Algo.formatTime(widget.dateTime);
+      first = widget.dateTime == null
+          ? ""
+          : Algo.formatTime(widget.dateTime, formatter: widget.formatter);
     }
     showFirst = !showFirst;
     if (mounted) {

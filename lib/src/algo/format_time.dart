@@ -4,10 +4,12 @@ final _dateFormat = DateFormat("MMM dd, yyyy", "en_US");
 
 /// Create a object that holds the String options that can be used
 /// format a [DateTime]
+@immutable
 class Formatter {
   // Formatter initializer types
   /// Use large format type. Eg: minutes, hours
   static const large = Formatter(
+    justNow: 'just now',
     minute: 'minute',
     minutes: 'minutes',
     hour: 'hour',
@@ -18,6 +20,7 @@ class Formatter {
 
   /// Use small format type. Eg: mins, hrs
   static const small = Formatter(
+    justNow: 'now',
     minute: 'min',
     minutes: 'mins',
     hour: 'hr',
@@ -25,6 +28,9 @@ class Formatter {
     day: 'day',
     days: 'days',
   );
+
+  /// Eg: just now
+  final String justNow;
 
   /// Eg: 1 minute ago
   final String minute;
@@ -47,13 +53,37 @@ class Formatter {
   /// Create a object that holds the String options that can be used
   /// format a [DateTime]
   const Formatter({
-    this.minute = '',
-    this.minutes = '',
-    this.hour = '',
-    this.hours = '',
-    this.day = '',
-    this.days = '',
+    @required this.justNow,
+    @required this.minute,
+    @required this.minutes,
+    @required this.hour,
+    @required this.hours,
+    @required this.day,
+    @required this.days,
   });
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Formatter &&
+          runtimeType == other.runtimeType &&
+          justNow == other.justNow &&
+          minute == other.minute &&
+          minutes == other.minutes &&
+          hour == other.hour &&
+          hours == other.hours &&
+          day == other.day &&
+          days == other.days;
+
+  @override
+  int get hashCode =>
+      justNow.hashCode ^
+      minute.hashCode ^
+      minutes.hashCode ^
+      hour.hashCode ^
+      hours.hashCode ^
+      day.hashCode ^
+      days.hashCode;
 }
 
 String _formatTime(
@@ -69,7 +99,7 @@ String _formatTime(
 
   final inSec = difference.inSeconds;
   if (inSec < 55) {
-    return "Just Now";
+    return formatter.justNow;
   }
   if (inSec < 100) {
     return addAgo("1 ${formatter.minute}");

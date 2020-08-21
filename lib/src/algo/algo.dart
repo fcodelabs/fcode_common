@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:device_info/device_info.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
@@ -68,5 +69,10 @@ abstract class Algo {
     bool showAgo = true,
     DateFormat df,
   }) =>
-      _formatTime(d, formatter: formatter, showAgo: showAgo, df: df);
+      _formatTime(
+        d,
+        formatter: formatter,
+        showAgo: showAgo,
+        df: df,
+      );
 }
