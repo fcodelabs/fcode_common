@@ -1,3 +1,10 @@
+## [0.0.9] - August 21, 2020
+
+* Update dependencies
+* Add sentence case and first letter functions to Algo
+* Bug fixes and improvements in time formatter
+* Add support to format time as yesterday in time formatter
+
 ## [0.0.8] - July 02, 2020
 
 * Bug fixes in SnackBar
