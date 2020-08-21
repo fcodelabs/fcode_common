@@ -8,9 +8,9 @@ import 'package:intl/intl.dart';
 
 import '../log.dart';
 
+part 'change_case.dart';
 part 'format_time.dart';
 part 'get_ud_id.dart';
-part 'to_title_case.dart';
 
 /// Have implemented different types of algorithms that is useful.
 abstract class Algo {
@@ -25,6 +25,16 @@ abstract class Algo {
   /// print(ret);  // Fcode Bloc
   /// ```
   static String toTitleCase(final String text) => _toTitleCase(text);
+
+  /// Capitalize the first letter of the given [text]
+  ///
+  /// ```dart
+  /// final str = "fcode bloc";
+  /// final ret = Algo.toFirstLetterCapital(str);
+  /// print(ret);  // Fcode bloc
+  /// ```
+  static String toFirstLetterCapital(final String text) =>
+      _firstLetterCapital(text);
 
   /// Get a unique ID for the flutter app
   static Future<String> getUdID() => _getUdID();

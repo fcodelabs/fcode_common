@@ -13,3 +13,11 @@ String _toTitleCase(final String text) {
   }).toList();
   return words.join(" ");
 }
+
+String _firstLetterCapital(final String text) {
+  if (text == null) {
+    return "";
+  }
+  final t = text.toLowerCase();
+  return t[0].toUpperCase() + t.substring(1);
+}
