@@ -1,3 +1,8 @@
+## [0.0.10] - August 23, 2020
+
+* Add connectivity checker
+* Bug fixes in the format time
+
 ## [0.0.9] - August 21, 2020
 
 * Update dependencies
