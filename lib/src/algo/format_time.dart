@@ -95,12 +95,12 @@ class Formatter {
 }
 
 String _formatTime(
-  DateTime d, {
+  DateTime d,
   Formatter formatter,
   bool showAgo,
   bool showYesterday,
   DateFormat df,
-}) {
+) {
   final now = DateTime.now();
   if (showYesterday) {
     final yesterday = DateTime(now.year, now.month, now.day - 1);
