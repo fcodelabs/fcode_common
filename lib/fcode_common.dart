@@ -5,5 +5,6 @@
 library fcode_common;
 
 export 'src/algo/algo.dart';
+export 'src/connectivity_checker.dart';
 export 'src/log.dart';
 export 'src/widget/widget.dart';
