@@ -1,3 +1,8 @@
+## [0.0.11] - August 24, 2020
+
+* Add slack incoming webhook integration
+* ConnectivityChecker add instant check
+
 ## [0.0.10] - August 23, 2020
 
 * Add connectivity checker
