@@ -20,6 +20,10 @@ class CustomSnackBarTheme {
 
   /// Show a [SnackBar] action button with CLEAR as it's text that can be
   /// used to hide the [SnackBar].
+  ///
+  /// If `true`, default [SnackBar] action button will be shown only if
+  /// the action of the [SnackBar] is null.
+  ///
   /// If `false`, this action button will not be shown.
   /// Color of the button is getting from [SnackBarThemeData].
   final bool showDefaultAction;

@@ -90,12 +90,14 @@ class CustomSnackBar {
       behavior: behavior,
       animation: animation,
       onVisible: onVisible,
-      action: action == null && customTheme.showDefaultAction
-          ? SnackBarAction(
-              label: "CLEAR",
-              onPressed: hideAll,
-            )
-          : null,
+      action: action == null
+          ? customTheme.showDefaultAction
+              ? SnackBarAction(
+                  label: "CLEAR",
+                  onPressed: hideAll,
+                )
+              : null
+          : action,
     );
     showRawSnackBar(snackBar);
   }
