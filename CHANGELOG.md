@@ -1,3 +1,7 @@
+## [0.0.12] - August 25, 2020
+
+* Can add custom actions to CustomSnackBar
+
 ## [0.0.11] - August 24, 2020
 
 * Add slack incoming webhook integration
