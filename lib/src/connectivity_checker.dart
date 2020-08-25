@@ -54,22 +54,32 @@ class ConnectivityChecker {
     _timer?.cancel();
     _last = null;
     _timer = Timer.periodic(Duration(seconds: refresh), (t) async {
-      try {
-        final result = await InternetAddress.lookup(domain);
-        if (result.isNotEmpty &&
-            result[0].rawAddress.isNotEmpty &&
-            !(_last ?? false)) {
-          _stream.add(true);
-          _last = true;
-        }
-      } on SocketException catch (_) {
-        if (_last ?? true) {
-          _stream.add(false);
-          _last = false;
-        }
+      final connected = await checkConnectivity();
+      if (connected && !(_last ?? false)) {
+        _stream.add(true);
+        _last = true;
+      } else if (_last ?? true) {
+        _stream.add(false);
+        _last = false;
       }
     });
     started = true;
+  }
+
+  /// Instantly check whether the app has connection to the internet
+  /// or not.
+  /// Return [true] if the device is connected to the internet. Otherwise
+  /// [false].
+  Future<bool> checkConnectivity() async {
+    try {
+      final result = await InternetAddress.lookup(domain);
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        return true;
+      }
+      return false;
+    } on SocketException catch (_) {
+      return false;
+    }
   }
 
   /// Must call this method after using this instance. This method will
