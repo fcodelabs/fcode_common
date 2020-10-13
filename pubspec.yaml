@@ -16,7 +16,7 @@ dependencies:
   meta: ^1.1.8
   crypto: ^2.1.4
   rxdart: ^0.24.1
-  device_info: ^0.4.2+6
+  device_info: ^0.4.2+8
   http: ^0.12.2
 
 dev_dependencies:

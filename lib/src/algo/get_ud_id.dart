@@ -12,7 +12,7 @@ Future<void> __findDeviceInfo() async {
     if (Platform.isAndroid) {
       final build = await deviceInfoPlugin.androidInfo;
       _deviceName = build.model;
-      _deviceVersion = build.version.toString();
+      _deviceVersion = build.version.codename;
       identifier = build.androidId;
     } else if (Platform.isIOS) {
       final data = await deviceInfoPlugin.iosInfo;
