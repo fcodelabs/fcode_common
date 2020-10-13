@@ -54,7 +54,9 @@ class ItemSeparator extends StatelessWidget {
               ? 16
               : lineSize == LINE_SMALL
                   ? 80
-                  : lineSize == LINE_LARGE ? 0 : lineSize.toDouble(),
+                  : lineSize == LINE_LARGE
+                      ? 0
+                      : lineSize.toDouble(),
         ),
         color: separatorColor ?? const Color(0x90D1D1D1),
       ),

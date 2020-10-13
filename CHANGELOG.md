@@ -1,3 +1,7 @@
+## [0.0.13] - October 13, 2020
+
+* Getting version number fix in Algo module
+
 ## [0.0.12] - August 25, 2020
 
 * Can add custom actions to CustomSnackBar
