@@ -1,3 +1,7 @@
+## [0.0.14] - January 07, 2021
+
+* Update dependencies
+
 ## [0.0.13] - October 13, 2020
 
 * Getting version number fix in Algo module
