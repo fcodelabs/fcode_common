@@ -1,3 +1,7 @@
+## [0.0.15] - January 21, 2021
+
+* Update dependencies
+
 ## [0.0.14] - January 07, 2021
 
 * Update dependencies

@@ -1,7 +1,7 @@
 name: fcode_common
 description: Common algorithms and Widgets that are used by fcode labs (pvt) ltd for
   thier flutter apps production
-version: 0.0.14
+version: 0.0.15
 repository: https://github.com/fcodelabs/fcode_bloc
 issue_tracker: https://github.com/fcodelabs/fcode_bloc/issues
 homepage: https://www.fcodelabs.com
@@ -15,7 +15,7 @@ dependencies:
   intl: ^0.16.1
   meta: ^1.1.8
   crypto: ^2.1.4
-  rxdart: ^0.24.1
+  rxdart: ^0.25.0
   device_info: ^1.0.0
   http: ^0.12.2
 
