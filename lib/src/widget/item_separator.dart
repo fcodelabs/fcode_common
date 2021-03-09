@@ -28,14 +28,14 @@ class ItemSeparator extends StatelessWidget {
 
   /// Color to be shown in the padding area. App's `backgroundColor`
   /// is used if not provided.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Color of the line.
-  final Color separatorColor;
+  final Color? separatorColor;
 
   /// {@macro item_separator}
   ItemSeparator({
-    Key key,
+    Key? key,
     this.lineSize = LINE_LARGE,
     this.backgroundColor,
     this.separatorColor,

@@ -11,35 +11,35 @@ import 'package:flutter/painting.dart';
 /// {@endtemplate}
 class ProfileImage extends StatelessWidget {
   /// Network URL for the image to be shown
-  final ImageProvider image;
+  final ImageProvider? image;
 
   /// First Name of the person
-  final String firstName;
+  final String? firstName;
 
   /// Last Name of the person
-  final String lastName;
+  final String? lastName;
 
   /// Same as [CircleAvatar.backgroundColor]
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
   /// Same as [CircleAvatar.foregroundColor]
-  final Color foregroundColor;
+  final Color? foregroundColor;
 
   /// Same as [CircleAvatar.radius]
-  final double radius;
+  final double? radius;
 
   /// Same as [CircleAvatar.minRadius]
-  final double minRadius;
+  final double? minRadius;
 
   /// Same as [CircleAvatar.maxRadius]
-  final double maxRadius;
+  final double? maxRadius;
 
   /// Same as [Text.style]
-  final TextStyle style;
+  final TextStyle? style;
 
   /// {@macro profile_image}
   ProfileImage({
-    Key key,
+    Key? key,
     this.image,
     this.firstName,
     this.lastName,
@@ -54,12 +54,12 @@ class ProfileImage extends StatelessWidget {
 
   String _generate() {
     if (firstName == null) {
-      return lastName.substring(1, 3);
+      return lastName!.substring(1, 3);
     }
     if (lastName == null) {
-      return firstName.substring(1, 3);
+      return firstName!.substring(1, 3);
     }
-    return '${firstName[0]}${lastName[0]}';
+    return '${firstName![0]}${lastName![0]}';
   }
 
   @override

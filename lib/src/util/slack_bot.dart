@@ -54,7 +54,7 @@ class _Message {
   }
 
   /// Add a image block to the message
-  void addImage(String imgURL, String altText, [String title]) {
+  void addImage(String imgURL, String altText, [String? title]) {
     _msg.add({
       "type": "image",
       if (title != null)
@@ -118,7 +118,7 @@ class SlackBot {
   /// and [false] otherwise.
   Future<bool> send() async {
     final response = await http.post(
-      _url,
+      Uri.parse(_url),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

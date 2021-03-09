@@ -68,7 +68,7 @@ abstract class Algo {
     Formatter formatter = Formatter.large,
     bool showAgo = true,
     bool showYesterday = false,
-    DateFormat df,
+    DateFormat? df,
   }) =>
       _formatTime(
         d,

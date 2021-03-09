@@ -17,15 +17,15 @@ class PastTime extends StatefulWidget {
   final Formatter formatter;
 
   /// Text Style of the field
-  final TextStyle style;
+  final TextStyle? style;
 
   /// Text Alignment of the field
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
 
   /// {@macro past_time}
   PastTime({
-    Key key,
-    @required this.dateTime,
+    Key? key,
+    required this.dateTime,
     this.formatter = Formatter.large,
     this.style,
     this.textAlign,
@@ -36,10 +36,10 @@ class PastTime extends StatefulWidget {
 }
 
 class _PastTimeState extends State<PastTime> {
-  Timer timer;
-  bool showFirst;
-  String first;
-  String second;
+  Timer? timer;
+  late bool showFirst;
+  late String first;
+  late String second;
 
   @override
   void initState() {
@@ -51,9 +51,7 @@ class _PastTimeState extends State<PastTime> {
     showFirst = true;
     timer?.cancel();
     timer = Timer.periodic(Duration(seconds: 60), changeValues);
-    first = widget.dateTime == null
-        ? ""
-        : Algo.formatTime(widget.dateTime, formatter: widget.formatter);
+    first = Algo.formatTime(widget.dateTime, formatter: widget.formatter);
     second = first;
   }
 
@@ -68,13 +66,9 @@ class _PastTimeState extends State<PastTime> {
 
   void changeValues(Timer t) {
     if (showFirst) {
-      second = widget.dateTime == null
-          ? ""
-          : Algo.formatTime(widget.dateTime, formatter: widget.formatter);
+      second = Algo.formatTime(widget.dateTime, formatter: widget.formatter);
     } else {
-      first = widget.dateTime == null
-          ? ""
-          : Algo.formatTime(widget.dateTime, formatter: widget.formatter);
+      first = Algo.formatTime(widget.dateTime, formatter: widget.formatter);
     }
     showFirst = !showFirst;
     if (mounted) {

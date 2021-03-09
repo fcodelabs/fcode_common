@@ -7,19 +7,19 @@ import 'package:flutter/material.dart';
 class Pressable extends Stack {
   /// {@macro pressable}
   Pressable({
-    Key key,
-    @required Widget child,
-    GestureTapCallback onTap,
-    GestureTapCallback onDoubleTap,
-    GestureLongPressCallback onLongPress,
-    Color focusColor,
-    Color hoverColor,
-    Color highlightColor,
-    Color splashColor,
-    InteractiveInkFeatureFactory splashFactory,
-    double radius,
-    BorderRadius borderRadius,
-    ShapeBorder customBorder,
+    Key? key,
+    required Widget child,
+    GestureTapCallback? onTap,
+    GestureTapCallback? onDoubleTap,
+    GestureLongPressCallback? onLongPress,
+    Color? focusColor,
+    Color? hoverColor,
+    Color? highlightColor,
+    Color? splashColor,
+    InteractiveInkFeatureFactory? splashFactory,
+    double? radius,
+    BorderRadius? borderRadius,
+    ShapeBorder? customBorder,
   }) : super(
           key: key,
           children: <Widget>[

@@ -22,30 +22,27 @@ class ActionItemModel {
 
   /// {@macro action_item_model}
   const ActionItemModel({
-    @required this.text,
-    @required this.icon,
-    @required this.onPressed,
+    required this.text,
+    required this.icon,
+    required this.onPressed,
   });
 }
 
 class _ActionItem extends StatelessWidget {
   final bool expanded;
-  final double opacity;
-  final String text;
+  final double? opacity;
+  final String? text;
   final IconData icon;
   final VoidCallback onPressed;
 
   _ActionItem({
-    Key key,
-    @required this.expanded,
+    Key? key,
+    required this.expanded,
     this.text,
-    @required this.icon,
-    @required this.onPressed,
+    required this.icon,
+    required this.onPressed,
     this.opacity,
-  })  : assert(expanded != null),
-        assert(icon != null),
-        assert(onPressed != null),
-        super(key: key);
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -100,16 +97,16 @@ class AnimatedFab extends StatefulWidget {
   final List<ActionItemModel> actions;
 
   /// Key to be used in Scaffold
-  final GlobalKey<ScaffoldState> scaffoldKey;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
 
   /// Drawer to be used in the Scaffold
-  final Widget drawer;
+  final Widget? drawer;
 
   /// Body of the Scaffold. This is required
   final Widget body;
 
   /// AppBar of the Scaffold
-  final PreferredSizeWidget appBar;
+  final PreferredSizeWidget? appBar;
 
   /// Default icon of the main FAB
   final IconData icon1;
@@ -119,12 +116,12 @@ class AnimatedFab extends StatefulWidget {
 
   /// {@macro animated_fab}
   const AnimatedFab({
-    Key key,
+    Key? key,
     this.scaffoldKey,
     this.appBar,
     this.drawer,
-    @required this.body,
-    @required this.actions,
+    required this.body,
+    required this.actions,
     this.icon1 = Icons.add,
     this.icon2 = Icons.close,
   }) : super(key: key);
@@ -135,9 +132,9 @@ class AnimatedFab extends StatefulWidget {
 
 class _AnimatedFabState extends State<AnimatedFab>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  CurvedAnimation curvedAnimation;
-  Animation<double> translationAnimation;
+  late AnimationController controller;
+  late CurvedAnimation curvedAnimation;
+  late Animation<double> translationAnimation;
   bool isOpened = false;
 
   @override
@@ -273,7 +270,7 @@ class _AnimatedFabState extends State<AnimatedFab>
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ...animatedChildren(),
-            child,
+            child!,
           ],
         );
       },

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
 /// {@template connectivity_checker}
@@ -28,8 +28,8 @@ class ConnectivityChecker {
   /// it cannot be stopped without calling [close].
   bool started = false;
 
-  Timer _timer;
-  bool _last;
+  Timer? _timer;
+  bool? _last;
 
   /// {@macro connectivity_checker}
   ConnectivityChecker({

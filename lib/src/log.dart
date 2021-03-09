@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:meta/meta.dart';
 
 /// {@template log}
 /// Used to print logs in the console according to the severity level
@@ -85,7 +85,7 @@ class Log {
     if (!_logs.containsKey(tag)) {
       _logs[tag] = Log._(tag.padRight(25));
     }
-    return _logs[tag];
+    return _logs[tag]!;
   }
 
   /// Used to log a [message] with [debug] severity level.

@@ -1,8 +1,8 @@
 part of 'algo.dart';
 
-String _deviceID;
-String _deviceName;
-String _deviceVersion;
+String? _deviceID;
+String? _deviceName;
+String? _deviceVersion;
 final _log = Log("Algorithms");
 
 Future<void> __findDeviceInfo() async {
@@ -37,19 +37,19 @@ Future<String> _getUdID() async {
   if (_deviceID?.isEmpty ?? true) {
     await __findDeviceInfo();
   }
-  return _deviceID;
+  return _deviceID!;
 }
 
 Future<String> _getDeviceName() async {
   if (_deviceName?.isEmpty ?? true) {
     await __findDeviceInfo();
   }
-  return _deviceName;
+  return _deviceName!;
 }
 
 Future<String> _getDeviceVersion() async {
   if (_deviceVersion?.isEmpty ?? true) {
     await __findDeviceInfo();
   }
-  return _deviceVersion;
+  return _deviceVersion!;
 }

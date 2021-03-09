@@ -58,14 +58,14 @@ class Formatter {
   /// Create a object that holds the String options that can be used
   /// format a [DateTime]
   const Formatter({
-    @required this.yesterday,
-    @required this.justNow,
-    @required this.minute,
-    @required this.minutes,
-    @required this.hour,
-    @required this.hours,
-    @required this.day,
-    @required this.days,
+    required this.yesterday,
+    required this.justNow,
+    required this.minute,
+    required this.minutes,
+    required this.hour,
+    required this.hours,
+    required this.day,
+    required this.days,
   });
 
   @override
@@ -99,7 +99,7 @@ String _formatTime(
   Formatter formatter,
   bool showAgo,
   bool showYesterday,
-  DateFormat df,
+  DateFormat? df,
 ) {
   final now = DateTime.now();
   if (showYesterday) {

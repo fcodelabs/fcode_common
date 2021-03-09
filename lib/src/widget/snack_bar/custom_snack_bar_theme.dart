@@ -30,7 +30,7 @@ class CustomSnackBarTheme {
 
   /// [TextStyle] that is used with the text that is showing in the
   /// [CustomSnackBar].
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// Maximum number of lines that the text shown in the [CustomSnackBar]
   /// can have.
@@ -46,7 +46,7 @@ class CustomSnackBarTheme {
 
   /// Text style of the loading snack bar. If null, this will use the
   /// [textStyle]
-  final TextStyle loadingSnackBarTextStyle;
+  final TextStyle? loadingSnackBarTextStyle;
 
   /// Duration that the error snack bar is shown. If null, this will use
   /// [defaultDuration].
@@ -58,7 +58,7 @@ class CustomSnackBarTheme {
 
   /// Text style of the error snack bar. If null, this will use the
   /// [textStyle]
-  final TextStyle errorSnackBarTextStyle;
+  final TextStyle? errorSnackBarTextStyle;
 
   /// {@macro custom_snack_bar_theme}
   CustomSnackBarTheme({
