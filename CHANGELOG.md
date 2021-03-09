@@ -1,3 +1,7 @@
+## [0.1.0] - March 09, 2021
+
+* Upgrade to flutter null safety
+
 ## [0.0.15] - January 21, 2021
 
 * Update dependencies
