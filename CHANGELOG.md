@@ -1,3 +1,7 @@
+## [0.1.1] - April 06, 2021
+
+* Custom snack bar implementation changed
+
 ## [0.1.0] - March 09, 2021
 
 * Upgrade to flutter null safety
