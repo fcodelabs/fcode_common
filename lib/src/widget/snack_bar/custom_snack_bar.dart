@@ -12,15 +12,15 @@ import 'custom_snack_bar_theme.dart';
 /// For more information, see the documentation of [ScaffoldMessenger].
 /// {@endtemplate}
 class CustomSnackBar {
-  late ScaffoldMessengerState _messengerState;
-
   /// Additional theme information for [CustomSnackBar]
   static CustomSnackBarTheme customTheme = CustomSnackBarTheme();
 
+  /// Use this Key in the MaterialApp. This will automatically find
+  /// ScaffoldMessenger in the nearest Scaffold.
+  static final rootScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
   /// {@macro custom_snack_bar}
-  CustomSnackBar({required BuildContext context}) {
-    _messengerState = ScaffoldMessenger.of(context);
-  }
+  CustomSnackBar();
 
   /// Shows a SnackBar with given error [msg]
   void showErrorSnackBar(
@@ -98,11 +98,11 @@ class CustomSnackBar {
 
   /// Show the given [snackBar]
   void showRawSnackBar(SnackBar snackBar) {
-    _messengerState.showSnackBar(snackBar);
+    rootScaffoldMessengerKey.currentState?.showSnackBar(snackBar);
   }
 
   /// Immediately hides the [SnackBar]
   void hideAll() {
-    _messengerState.removeCurrentSnackBar();
+    rootScaffoldMessengerKey.currentState?.removeCurrentSnackBar();
   }
 }
