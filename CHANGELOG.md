@@ -1,3 +1,7 @@
+## [0.1.2] - Oct 01, 2021
+
+* Upgrade packages
+
 ## [0.1.1] - April 06, 2021
 
 * Custom snack bar implementation changed
